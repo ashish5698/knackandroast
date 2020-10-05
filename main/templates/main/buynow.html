@@ -1,0 +1,20 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<p> </p>
+<div class="container" style="border-style: groove;border-width: thick; padding: 20px;">
+    <b><h3 style="text-align:center;">Confirm Order</h3></b><br>
+    <h5><b>Cake Title: {{cake.cake_title}}</b><br></h5>
+    <h5><b>Cake Details: </b>{{cake.cake_content|safe}}</h5>
+    <p> <img src="{{cake.photo.url}}" width="480" height="600" style="margin:0px 100px"></p>
+    <h5><b>Amount: </b>{{cake.amount}}</h5>
+    <h5><b>Username: {{user.username|title}}</b></h5>
+    <h5><b>Email: </b><i>{{user.email}}</i></h5>
+    <div class="text-center" style="text-align: center;">
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" onclick="location.href='{% url 'login' %}'" name="placeorder" style="border: none; color:white;background-color: #555555;padding: 15px 32px;">Confirm!</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

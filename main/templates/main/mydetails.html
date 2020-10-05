@@ -1,0 +1,14 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+    <div class="card">
+    <h5>
+    <p><b>Name:</b> {{user.username|title}} <br></p>
+    <p> <b>Email:</b> {{user.email}} </p>
+    </h5>
+    </div>
+</div>
+{% endblock %}

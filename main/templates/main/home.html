@@ -1,0 +1,28 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<div class="row">
+    {% for cake in cakes|dictsort:"cake_id" %}
+        <div class="card-deck align-items-center" style="width: 23rem; display:inline-block; column-gap: 40;">
+          <div class="card blue-grey darken-1 hoverable">
+            <div class="card-content white-text">
+              <span class="card-title" style="text-align:center;">{{cake.cake_title}}</span><br>
+              <span class="card-text black">Cake id: {{cake.cake_id}}</span>
+              <p>{{cake.cake_content|safe}}</p><br>
+              <img width="300" height="400" src="{{ cake.photo.url }}"  class="img-fluid" style="vertical-align:middle;"/><br><br>
+              <div class="text-center" style="text-align: center;">
+                {% if user.is_authenticated %}
+                <form action="{% url 'buynow' %}" method="post">
+                  {% csrf_token %}
+                <button type="submit" value="{{cake.cake_id}}" onclick="location.href='{% url 'buynow' %}'" name='buynow' style="border: none; color:white;background-color: #555555;padding: 15px 32px;">Place order</button>
+                </form>
+                  {% else %}
+                  <button type="submit" onclick="location.href='{% url 'login' %}'" name="login" style="border: none; color:white;background-color: #555555;padding: 15px 32px;">Login to Order</button>
+                    {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+{% endblock %}
